@@ -2,10 +2,10 @@
 
   <div>
     <input type="text" #inputKeyword/>
-    <button (click)="search()">Search</button>
+    <button (click)="searchSongs()">Search</button>
   </div>
 
-  <div *ngFor="let song of songsList">
+  <div *ngFor="let song of songsNamesList">
     <div>{{song}}</div>
   </div>
 

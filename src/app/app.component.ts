@@ -1,6 +1,5 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { SoundcloudApiService } from './services/soundcloud-api.service'
-import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -8,35 +7,21 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnDestroy {
-
+export class AppComponent {
   @ViewChild('inputKeyword') inputKeyword;
-  $searchSub: Subscription;
-  songsList: Array<string> = [];
-  nextLink: String;
+  songsNamesList: Array<string> = [];
+  nextLink: string;
 
   constructor(private scApi: SoundcloudApiService) {}
 
-  search() {
+  searchSongs() {
     let keyWord = this.inputKeyword.nativeElement.value;
-
-    this.$searchSub = this.scApi.search(keyWord).subscribe((response: any) => {
-      let res = response.json();
-      this.nextLink = res.next_href;
-
-      res.collection.map(item => {
-        this.songsList.push(item.title);
-      })
-      
-    });
+    this.songsNamesList = this.scApi.searchSongs(keyWord);
+    console.log('this.songsList -> ', this.songsNamesList);
   }
 
   next() {
 
-  }
-
-  ngOnDestroy() {
-    this.$searchSub.unsubscribe();
   }
 
 }
