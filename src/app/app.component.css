@@ -1,0 +1,25 @@
+section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 80px 0 0 0;
+}
+.serach-form-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 0 40px 0;
+	width: 60%;
+}
+.serach-form-box input {
+	margin: 0 0 20px 0;
+	font-size: 20px;
+	line-height: 20px;
+	height: 50px;
+}
+.serach-form-box button {
+	min-width: 50%;
+}
+.search-results-box {
+	width: 60%;
+}

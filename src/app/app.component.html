@@ -1,15 +1,15 @@
 <section>
 
-  <div>
-    <input type="text" #inputKeyword/>
-    <button (click)="searchSongs()">Search</button>
+  <div class="serach-form-box">
+    <input type="text" class="form-control" (change)="detect()" #inputKeyword/>
+    <button (click)="searchSongs()" type="button" class="btn btn-primary">Search</button>
   </div>
 
-  <div *ngFor="let song of songsNamesList">
-    <div>{{song}}</div>
-  </div>
+  <ul class="search-results-box list-group" >
+    <li class="list-group-item" *ngFor="let song of songsNamesList">{{song}}</li>
+  </ul>
 
-  <button (click)="next()">{{nextLink}}</button>
+  <button (click)="next()" class="btn btn-primary" *ngIf="songsNamesList.length > 0">Next results</button>
 
 </section>
 

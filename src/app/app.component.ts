@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { SoundcloudApiService } from './services/soundcloud-api.service'
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,18 +9,22 @@ import { SoundcloudApiService } from './services/soundcloud-api.service'
 export class AppComponent {
   @ViewChild('inputKeyword') inputKeyword;
   songsNamesList: Array<string> = [];
-  nextLink: string;
+  resultsOffset = 0;
 
   constructor(private scApi: SoundcloudApiService) {}
 
   searchSongs() {
-    let keyWord = this.inputKeyword.nativeElement.value;
-    this.songsNamesList = this.scApi.searchSongs(keyWord);
-    console.log('this.songsList -> ', this.songsNamesList);
+    const keyWord = this.inputKeyword.nativeElement.value;
+    this.songsNamesList = this.scApi.searchSongs(keyWord, this.resultsOffset);
   }
 
   next() {
+    this.resultsOffset = this.resultsOffset + this.songsNamesList.length;
+    this.searchSongs();
+  }
 
+  detect() {
+    this.resultsOffset = 0;
   }
 
 }
